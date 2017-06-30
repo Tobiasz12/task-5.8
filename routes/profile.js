@@ -5,6 +5,7 @@ var express = require('express');
 var extend = require('xtend');
 var forms = require('forms');
 
+
 var profileForm = forms.create({
     givenName: forms.fields.string({require:true}),
     surname: forms.fields.string({require:true}),
@@ -35,6 +36,7 @@ module.exports = function profile() {
     router.all('/', function(req, res) {
         profileForm.handle(req, {
             success: function(form) {
+
                 req.user.givenName = form.data.givenName;
                 req.user.surname = form.data.surname;
                 req.user.customData.streetAddress = form.data.streetAddress;
